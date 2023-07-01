@@ -15,7 +15,10 @@ class NotesViewBody extends StatelessWidget {
           SizedBox(
             height: 50,
           ),
-          CustomAppBar(),
+          CustomAppBar(
+            icon: Icons.search,
+            title: 'Notes',
+          ),
           //to let ListViewBuilder take the available space (to use Expanded Widget must be in widget of type flex)
           //type flex => like Column and Row (if used it in stack also take children but stack not flex so will get exception won't appear on screen just in real device)
           Expanded(child: NoteListView()),
@@ -24,4 +27,3 @@ class NotesViewBody extends StatelessWidget {
     );
   }
 }
-

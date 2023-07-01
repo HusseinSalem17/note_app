@@ -3,20 +3,24 @@ import 'package:flutter/material.dart';
 import 'cutsom_icon.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({super.key, required this.title, required this.icon});
 
+  final String title;
+  final IconData icon;
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: const [
+      children: [
         Text(
-          'Notes',
-          style: TextStyle(
+          title,
+          style: const TextStyle(
             fontSize: 28,
           ),
         ),
-        Spacer(),
-        CustomSearchIcon(),
+        const Spacer(),
+        CustomIcon(
+          icon: icon,
+        ),
       ],
     );
   }
