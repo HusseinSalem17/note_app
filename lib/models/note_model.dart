@@ -27,8 +27,8 @@ Hive Steps (dependency injection)
 2. typeAdapter (1. HiveType typeId from 0 => 255 must be special for this object the same with fields (have unique id per class)
   2. use keyWord par '' like import but this to put the name of file that will be generated (.g => will be generated, .dart => lang dart))
 3. put this line in terminal (flutter packages pub run build_runner build), then the code will be generated using annotations
-
-
+4. (to support Hive) make main async then await use package Hive.initFlutter() (must import Hive Flutter)
+5. open the box that'll store data (or collection), so made this Hive.openBox(kNotesBox);
 
 */
 

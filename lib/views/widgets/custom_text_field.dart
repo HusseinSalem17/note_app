@@ -12,14 +12,16 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       maxLines: maxLines,
       //change the cursor color
-      cursorColor: KPrimaryColor,
+      cursorColor: kPrimaryColor,
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: const TextStyle(color: KPrimaryColor,),
+        hintStyle: const TextStyle(
+          color: kPrimaryColor,
+        ),
         border: buildBorder(),
         enabledBorder: buildBorder(),
         //i want the color be the primary color
-        focusedBorder: buildBorder(KPrimaryColor),
+        focusedBorder: buildBorder(kPrimaryColor),
       ),
     );
   }
