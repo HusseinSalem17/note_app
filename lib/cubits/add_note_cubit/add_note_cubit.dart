@@ -9,6 +9,7 @@ part 'add_note_state.dart';
 //Hive (from flutter (package))
 class AddNoteCubit extends Cubit<AddNoteState> {
   AddNoteCubit() : super(AddNoteInitial());
+  bool isLoading = false;
 
   addNote(NoteModel note) async {
     emit(AddNoteLoading());
@@ -16,7 +17,7 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     try {
       var notesBox = Hive.box<NoteModel>(kNotesBox);
       //i can put add(note) because i made register to this type (typeAdapter)(add take dynamic type)
-      //,if didn't make registerAdapter to (noteModel) will get error
+      //if didn't make registerAdapter to (noteModel) will get error
       await notesBox.add(note);
       emit(AddNoteSuccess());
     } catch (e) {
