@@ -24,9 +24,15 @@ class AddNoteBottomSheet extends StatelessWidget {
           //to stop the user to make any action after press button(if true (absorbing) stop make any action during implementation)
           return AbsorbPointer(
             absorbing: state is AddNoteLoading ? true : false,
-            child: const Padding(
-              padding: EdgeInsets.all(16),
-              child: SingleChildScrollView(child: AddNoteForm()),
+            child: Padding(
+              //to make the ui resize after show the keyboard (so make padding from bottom the same size of keyboard so used viewInsets)
+              padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                  left: 16,
+                  right: 16),
+              child: const SingleChildScrollView(
+                child: AddNoteForm(),
+              ),
             ),
           );
         },
