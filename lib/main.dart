@@ -12,10 +12,10 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
   //init the Hive package
   await Hive.initFlutter();
-  //to store data in this box
-  await Hive.openBox(kNotesBox);
   //register to typeAdapter (the type that i want to store (that typeAdapter that i genereated auto))
   Hive.registerAdapter(NoteModelAdapter());
+  //to store data in this box
+  await Hive.openBox<NoteModel>(kNotesBox);
   runApp(const NotesApp());
 }
 
@@ -24,21 +24,13 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        //provide instance of AddNoteCubit to all app
-        BlocProvider(
-          create: (context) => AddNoteCubit(),
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          brightness: Brightness.dark,
-          fontFamily: 'Poppins',
-        ),
-        home: const NotesView(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        fontFamily: 'Poppins',
       ),
+      home: const NotesView(),
     );
   }
 }
