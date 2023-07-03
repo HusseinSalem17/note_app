@@ -4,9 +4,12 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:note_app/constants.dart';
 import 'package:note_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:note_app/models/note_model.dart';
+import 'package:note_app/simple_bloc_observer.dart';
 import 'package:note_app/views/notes_view.dart';
 
 void main() async {
+  //make class (observer) to tell if there any error during trigger the bloc
+  Bloc.observer = SimpleBlocObserver();
   //init the Hive package
   await Hive.initFlutter();
   //to store data in this box
