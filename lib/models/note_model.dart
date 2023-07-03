@@ -29,6 +29,7 @@ Hive Steps (dependency injection)
 3. put this line in terminal (flutter packages pub run build_runner build), then the code will be generated using annotations
 4. (to support Hive) make main async then await use package Hive.initFlutter() (must import Hive Flutter)
 5. open the box that'll store data (or collection), so made this Hive.openBox(kNotesBox);
+6. Hive.registerAdapter(NoteModelAdapter()) => after generate the typeAdapter ,i need to tell Hive to use NoteModel(type)
 
 */
 
