@@ -16,11 +16,13 @@ void main() async {
   Hive.registerAdapter(NoteModelAdapter());
   //to store data in this box
   await Hive.openBox<NoteModel>(kNotesBox);
+  
   runApp(const NotesApp());
 }
 
 class NotesApp extends StatelessWidget {
   const NotesApp({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
