@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:note_app/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:note_app/models/note_model.dart';
 
+import 'colors_list_view.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
 
@@ -50,28 +51,17 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 32,
           ),
+          const ColorsListView(),
+          const SizedBox(
+            height: 16,
+          ),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               return CustomButton(
                 isLoading: state is AddNoteLoading ? true : false,
                 onTap: () {
                   //validate the input
-                  if (formKey.currentState!.validate()) {
-                    //to save data
-                    formKey.currentState!.save();
-                    String formattedDate =
-                        DateFormat('EEEE, MMMM d, yyyy').format(DateTime.now());
-                    var noteModel = NoteModel(
-                        title: title!,
-                        subTitle: subTitle!,
-                        date: formattedDate,
-                        color: Colors.blue.value);
-                    BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                  } else {
-                    //to validate data during writting (if the CustomTextField empty get error otherwise won't)
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
-                  }
+                  validateInput(context);
                 },
               );
             },
@@ -82,5 +72,24 @@ class _AddNoteFormState extends State<AddNoteForm> {
         ],
       ),
     );
+  }
+
+  void validateInput(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      //to save data
+      formKey.currentState!.save();
+      String formattedDate =
+          DateFormat('EEEE, MMMM d, yyyy').format(DateTime.now());
+      var noteModel = NoteModel(
+          title: title!,
+          subTitle: subTitle!,
+          date: formattedDate,
+          color: Colors.blue.value);
+      BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+    } else {
+      //to validate data during writting (if the CustomTextField empty get error otherwise won't)
+      autovalidateMode = AutovalidateMode.always;
+      setState(() {});
+    }
   }
 }
