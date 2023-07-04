@@ -7,6 +7,8 @@ import 'package:note_app/models/note_model.dart';
 import 'package:note_app/simple_bloc_observer.dart';
 import 'package:note_app/views/notes_view.dart';
 
+import 'cubits/notes_cubit/notes_cubit.dart';
+
 void main() async {
   //make class (observer) to tell if there any error during trigger the bloc
   Bloc.observer = SimpleBlocObserver();
@@ -16,23 +18,25 @@ void main() async {
   Hive.registerAdapter(NoteModelAdapter());
   //to store data in this box
   await Hive.openBox<NoteModel>(kNotesBox);
-  
+
   runApp(const NotesApp());
 }
 
 class NotesApp extends StatelessWidget {
   const NotesApp({super.key});
-  
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        fontFamily: 'Poppins',
+    return BlocProvider(
+      create: (context) => NotesCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          fontFamily: 'Poppins',
+        ),
+        home: const NotesView(),
       ),
-      home: const NotesView(),
     );
   }
 }
