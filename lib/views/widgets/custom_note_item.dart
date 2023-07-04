@@ -48,7 +48,10 @@ class NoteItem extends StatelessWidget {
                 ),
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  //this will deelte the object from database (because extends HiveObject)
+                  note.date;
+                },
                 icon: const Icon(
                   FontAwesomeIcons.trash,
                   color: Colors.black,
