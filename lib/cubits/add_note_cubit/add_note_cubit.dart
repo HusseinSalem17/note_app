@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:meta/meta.dart';
 import 'package:note_app/constants.dart';
@@ -9,9 +10,10 @@ part 'add_note_state.dart';
 //Hive (from flutter (package))
 class AddNoteCubit extends Cubit<AddNoteState> {
   AddNoteCubit() : super(AddNoteInitial());
-  bool isLoading = false;
 
+  Color color = Colors.blue;
   addNote(NoteModel note) async {
+    note.color = color.value;
     emit(AddNoteLoading());
     //to get my box (notesBox), to use this box and add or any other operation (must detect the type of box to let his method take the same type)
     try {
